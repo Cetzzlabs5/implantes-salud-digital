@@ -1,0 +1,144 @@
+---
+import { MapPin, Phone, Clock } from 'lucide-react';
+import { CLINIC_DATA } from '../../lib/constants';
+
+const phoneWA = CLINIC_DATA.phone.replace('+', '');
+---
+
+<section id="contacto" class="py-16 lg:py-24 bg-[#f8fafc] relative overflow-hidden">
+  <div class="container mx-auto px-4 md:px-6 relative z-10">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center max-w-6xl mx-auto">
+      
+      {/* Columna Izquierda: Información */}
+      <div>
+        <span class="text-primary font-bold tracking-widest uppercase text-xs mb-4 block">Contacto</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl text-slate-900 mb-6 font-bold leading-tight">
+          Pedí tu <span class="text-primary">evaluación sin</span> compromiso
+        </h2>
+        <p class="text-lg text-slate-600 mb-10">
+          Completá el formulario o escribinos directo por WhatsApp. Te respondemos en minutos.
+        </p>
+
+        <div class="space-y-6 mb-12">
+          {/* Info Item 1 */}
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-blue-100/50 flex items-center justify-center text-primary shrink-0">
+              <MapPin className="w-5 h-5" />
+            </div>
+            <div>
+              <p class="font-bold text-slate-900 text-sm">Dirección</p>
+              <p class="text-slate-600 text-sm">{CLINIC_DATA.address}</p>
+            </div>
+          </div>
+
+          {/* Info Item 2 */}
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-blue-100/50 flex items-center justify-center text-primary shrink-0">
+              <Phone className="w-5 h-5" />
+            </div>
+            <div>
+              <p class="font-bold text-slate-900 text-sm">Teléfono</p>
+              <p class="text-slate-600 text-sm">{CLINIC_DATA.phone}</p>
+            </div>
+          </div>
+
+          {/* Info Item 3 */}
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-blue-100/50 flex items-center justify-center text-primary shrink-0">
+              <Clock className="w-5 h-5" />
+            </div>
+            <div>
+              <p class="font-bold text-slate-900 text-sm">Horarios</p>
+              <p class="text-slate-600 text-sm">Lun a Vie · 9:00 a 20:00 · Sáb 9:00 a 13:00</p>
+            </div>
+          </div>
+        </div>
+
+        <a 
+          href={CLINIC_DATA.whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-2 bg-[#25D366] text-white px-6 py-3.5 rounded-xl font-semibold text-base hover:bg-[#20bd5a] transition-colors shadow-md hover:shadow-lg"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.888-.788-1.489-1.761-1.663-2.06-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+          Chatear ahora por WhatsApp
+        </a>
+      </div>
+
+      {/* Columna Derecha: Formulario (Estilo Apple-like sin input de teléfono) */}
+      <div class="bg-white rounded-[2rem] p-8 md:p-10 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.08)] border border-slate-100 relative">
+        <h3 class="text-2xl font-bold text-slate-900 mb-8">Solicitar turno</h3>
+        
+        <form id="contactForm" class="space-y-6">
+          <input type="hidden" id="waPhone" value={phoneWA} />
+          
+          <div>
+            <label for="name" class="block text-sm font-bold text-slate-900 mb-2">Nombre completo *</label>
+            <input 
+              type="text" 
+              id="name" 
+              required
+              class="w-full px-4 py-3.5 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none text-slate-700 bg-slate-50 focus:bg-white"
+              placeholder="Tu nombre"
+            />
+          </div>
+          
+          <div>
+            <label for="message" class="block text-sm font-bold text-slate-900 mb-2">Tu consulta</label>
+            <textarea 
+              id="message" 
+              rows="4" 
+              class="w-full px-4 py-3.5 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none text-slate-700 bg-slate-50 focus:bg-white resize-none"
+              placeholder="Contanos brevemente qué tratamiento te interesa..."
+            ></textarea>
+          </div>
+          
+          <button 
+            type="submit"
+            class="w-full bg-[#0088cc] text-white py-4 rounded-xl font-bold text-base hover:bg-[#0077b3] transition-all shadow-md hover:shadow-lg mt-4 flex justify-center items-center gap-2 group"
+          >
+            Enviar y continuar por WhatsApp
+          </button>
+          
+          <p class="text-center text-xs text-slate-400 mt-4">
+            Tus datos son confidenciales y solo se usan para contactarte.
+          </p>
+        </form>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<script>
+  // Script para manejar el envío del formulario a WhatsApp
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('contactForm');
+    
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const nameInput = document.getElementById('name') as HTMLInputElement;
+        const messageInput = document.getElementById('message') as HTMLTextAreaElement;
+        const phoneInput = document.getElementById('waPhone') as HTMLInputElement;
+        
+        if (!nameInput || !phoneInput) return;
+        
+        const name = nameInput.value.trim();
+        const message = messageInput ? messageInput.value.trim() : '';
+        const phone = phoneInput.value;
+        
+        let text = `Hola, soy ${name}.`;
+        if (message) {
+          text += ` ${message}`;
+        } else {
+          text += ` Me gustaría solicitar un turno.`;
+        }
+        
+        const waUrl = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+        window.open(waUrl, '_blank');
+      });
+    }
+  });
+</script>

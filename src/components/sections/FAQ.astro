@@ -1,0 +1,147 @@
+---
+import { ChevronDown, MessageCircle } from 'lucide-react';
+import { CLINIC_DATA } from '../../lib/constants';
+
+const faqs = [
+  {
+    question: '¿Los tratamientos son dolorosos?',
+    answer: 'No. Utilizamos tecnología digital de vanguardia, como escáneres 3D que eliminan los incómodos moldes tradicionales. Además, la planificación digital milimétrica y las guías quirúrgicas reducen drásticamente las molestias y aceleran la recuperación.'
+  },
+  {
+    question: '¿Qué garantía tienen los implantes?',
+    answer: 'Al ser Socios Oficiales del Straumann Group, utilizamos implantes premium (Straumann® y Neodent®) que cuentan con garantía internacional de por vida.'
+  },
+  {
+    question: '¿Ofrecen planes de financiación o pagos en cuotas?',
+    answer: 'Sí, ofrecemos facilidades de pago exclusivamente a través de Tarjetas de Crédito, aprovechando las promociones vigentes de aumento de cuotas según tu banco.'
+  },
+  {
+    question: '¿Reciben obras sociales?',
+    answer: 'Sí. Trabajamos con todas las obras sociales vinculadas a la Asociación Odontológica Salteña y al Círculo Odontológico Salteño, además de convenios directos con Prevención Salud, Avalian, Amsterdam y Boreal.'
+  },
+  {
+    question: '¿Cuánto tiempo tarda un tratamiento de implantes?',
+    answer: 'Gracias a nuestro flujo 100% digital y laboratorio 3D in-house, garantizamos celeridad en los procesos, requiriendo menos citas y optimizando tu tiempo sin sacrificar la calidad ni la precisión.'
+  }
+];
+---
+
+<section id="faq" class="py-16 lg:py-24 bg-white relative overflow-hidden">
+  <div class="container mx-auto px-4 md:px-6 relative z-10">
+    <div class="max-w-3xl mx-auto text-center mb-12 lg:mb-16">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl text-slate-900 mb-6 font-bold">
+        Preguntas Frecuentes
+      </h2>
+      <p class="text-lg text-slate-600">
+        Todo lo que necesitas saber antes de dar el primer paso hacia tu nueva sonrisa.
+      </p>
+    </div>
+
+    <div class="max-w-3xl mx-auto mb-12">
+      <div class="space-y-4">
+        {faqs.map((faq, index) => (
+          <div class="faq-item border border-slate-200 rounded-2xl bg-white shadow-sm hover:shadow-md transition-shadow duration-300">
+            <button 
+              class="faq-button w-full flex items-center justify-between p-6 text-left group"
+              aria-expanded="false"
+            >
+              <span class="font-bold text-slate-900 text-lg pr-4 group-hover:text-primary transition-colors">
+                {faq.question}
+              </span>
+              <div class="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center shrink-0 group-hover:bg-blue-50 transition-colors">
+                <ChevronDown className="faq-icon w-5 h-5 text-slate-400 group-hover:text-primary transition-transform duration-300" />
+              </div>
+            </button>
+            
+            {/* 
+              Usamos CSS Grid (grid-template-rows) para animar la altura desde 0 a auto suavemente.
+              Al cerrarse, grid-rows-[0fr]. Al abrirse, cambiamos a grid-rows-[1fr].
+            */}
+            <div class="faq-content grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-in-out">
+              <div class="overflow-hidden">
+                <p class="p-6 pt-0 text-slate-600 leading-relaxed">
+                  {faq.answer}
+                </p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="max-w-xl mx-auto text-center bg-slate-50 rounded-3xl p-8 border border-slate-100">
+      <h3 class="text-xl font-bold text-slate-900 mb-2">¿Tienes otra duda?</h3>
+      <p class="text-slate-600 mb-6 text-sm">Nuestro equipo de atención al paciente está listo para ayudarte en todo momento.</p>
+      
+      <a 
+        href={CLINIC_DATA.whatsappUrl} 
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center gap-2 bg-primary text-white px-8 py-3.5 rounded-full font-semibold transition-all shadow-md hover:shadow-lg hover:bg-blue-800 hover:-translate-y-1"
+      >
+        <MessageCircle className="w-5 h-5" />
+        Escríbenos por WhatsApp
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  // Script Vanilla para manejar la lógica del acordeón
+  document.addEventListener('DOMContentLoaded', () => {
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+      const button = item.querySelector('.faq-button');
+      
+      if (!button) return;
+      
+      button.addEventListener('click', () => {
+        const isExpanded = button.getAttribute('aria-expanded') === 'true';
+        
+        // Cerrar todos los demás items (comportamiento de Acordeón exclusivo)
+        faqItems.forEach(otherItem => {
+          if (otherItem !== item) {
+            const otherButton = otherItem.querySelector('.faq-button');
+            const otherContent = otherItem.querySelector('.faq-content');
+            const otherIcon = otherItem.querySelector('.faq-icon');
+            
+            if (otherButton) otherButton.setAttribute('aria-expanded', 'false');
+            if (otherContent) {
+              otherContent.classList.remove('grid-rows-[1fr]');
+              otherContent.classList.add('grid-rows-[0fr]');
+            }
+            if (otherIcon) {
+              otherIcon.classList.remove('rotate-180');
+            }
+          }
+        });
+        
+        // Toglear el estado del item actual
+        const currentContent = item.querySelector('.faq-content');
+        const currentIcon = item.querySelector('.faq-icon');
+        
+        if (isExpanded) {
+          button.setAttribute('aria-expanded', 'false');
+          if (currentContent) {
+            currentContent.classList.remove('grid-rows-[1fr]');
+            currentContent.classList.add('grid-rows-[0fr]');
+          }
+          if (currentIcon) {
+            currentIcon.classList.remove('rotate-180');
+          }
+        } else {
+          button.setAttribute('aria-expanded', 'true');
+          if (currentContent) {
+            currentContent.classList.remove('grid-rows-[0fr]');
+            currentContent.classList.add('grid-rows-[1fr]');
+          }
+          if (currentIcon) {
+            currentIcon.classList.add('rotate-180');
+          }
+        }
+      });
+    });
+  });
+</script>

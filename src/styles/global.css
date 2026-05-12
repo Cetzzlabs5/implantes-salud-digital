@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: hsl(0 0% 100%);
+  --color-foreground: hsl(222.2 84% 4.9%);
+  --color-primary: hsl(213 94% 28%);
+  --color-primary-foreground: hsl(210 40% 98%);
+  --color-accent: hsl(45 93% 47%);
+  --color-accent-foreground: hsl(222.2 47.4% 11.2%);
+
+  /* Apple-like Typography */
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-display: 'Outfit', system-ui, sans-serif;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --primary: 213 94% 28%;
+    --primary-foreground: 210 40% 98%;
+    --accent: 45 93% 47%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-foreground);
+    /* Soften the text color for general reading, classic Apple UI touch */
+    color: #475569; 
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    color: #0f172a; /* Slate 900 for high contrast headers */
+    letter-spacing: -0.025em;
+  }
+
+  h1 {
+    font-weight: 800; /* Extrabold */
+  }
+
+  h2 {
+    font-weight: 700; /* Bold */
+  }
+
+  h3 {
+    font-weight: 700; /* Bold */
+    letter-spacing: -0.015em;
+  }
+
+  p {
+    font-weight: 400; /* Regular for high readability */
+    line-height: 1.75; /* Más espaciado para respirar */
+  }
+
+  b, strong {
+    font-weight: 600; /* Semibold for emphasis */
+  }
+}

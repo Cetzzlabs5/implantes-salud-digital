@@ -1,0 +1,126 @@
+---
+import { ScanFace, Target, ShieldCheck } from 'lucide-react';
+
+const features = [
+  {
+    title: 'Diagnóstico 3D Sin Moldes',
+    description: 'Utilizamos escáneres intraorales de última generación para crear un mapa digital exacto de tu boca. Olvídate para siempre de las molestas pastas y los moldes tradicionales, garantizando una experiencia 100% cómoda, rápida y sin náuseas.',
+    icon: ScanFace,
+    colSpan: 'md:col-span-2 md:row-span-2',
+    isMain: true
+  },
+  {
+    title: 'Precisión Digital',
+    description: 'Radiografía digital con 90% menos exposición y planificación guiada por computadora.',
+    icon: Target,
+    colSpan: 'md:col-span-1',
+    isMain: false
+  },
+  {
+    title: 'Garantía Internacional',
+    description: 'Socios oficiales de Straumann® y Neodent®. Tus implantes de titanio cuentan con certificación de por vida.',
+    icon: ShieldCheck,
+    colSpan: 'md:col-span-1',
+    isMain: false
+  }
+];
+---
+
+<section id="tecnologia" class="py-16 lg:py-24 bg-[#f8fafc] relative overflow-hidden">
+  
+  <div class="container mx-auto px-4 md:px-6 relative z-10">
+    <div class="text-center max-w-3xl mx-auto mb-16 lg:mb-24 bento-header">
+      <span class="text-accent font-bold tracking-widest uppercase text-xs mb-4 block">Estándar Premium</span>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl text-slate-900 mb-6">
+        Tecnología que transforma la odontología
+      </h2>
+      <p class="text-lg text-slate-600">
+        Dejamos atrás los métodos tradicionales. Nuestro enfoque 100% digital garantiza procedimientos más rápidos, precisos y con un confort absoluto para ti.
+      </p>
+    </div>
+
+    {/* BENTO GRID */}
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
+      {features.map((feature, index) => {
+        const Icon = feature.icon;
+        
+        return (
+          <div class={`group relative rounded-[2.5rem] p-[2px] transition-all duration-700 hover:-translate-y-2 bento-item bento-item-${index + 1} ${feature.colSpan} z-10`}>
+            
+            {/* Gradient Hover Border (Background of wrapper) */}
+            <div class="absolute inset-0 rounded-[2.5rem] bg-slate-200 group-hover:bg-gradient-to-br group-hover:from-primary/60 group-hover:via-accent/40 group-hover:to-primary/10 transition-all duration-700 opacity-50 group-hover:opacity-100 z-0"></div>
+            
+            {/* Card Content */}
+            <div class={`relative h-full bg-white rounded-[2.4rem] p-8 lg:p-10 flex flex-col z-10 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.05)] overflow-hidden`}>
+              
+              {/* Subtle background abstract shape inside card */}
+              {feature.isMain && (
+                <div class="absolute -right-20 -bottom-20 w-64 h-64 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-colors duration-700 z-0 pointer-events-none"></div>
+              )}
+              
+              <div class="relative z-10">
+                {/* Icon inside Accent Circle */}
+                <div class={`w-14 h-14 rounded-full bg-yellow-500/10 flex items-center justify-center mb-8 border border-yellow-500/20 group-hover:scale-110 group-hover:bg-yellow-500/20 transition-all duration-500`}>
+                  <Icon className="w-7 h-7 text-yellow-600" />
+                </div>
+                
+                <h3 class={`${feature.isMain ? 'text-3xl lg:text-4xl' : 'text-2xl'} font-bold text-slate-900 mb-4 group-hover:text-primary transition-colors duration-500`}>
+                  {feature.title}
+                </h3>
+                
+                <p class={`text-slate-600 leading-relaxed ${feature.isMain ? 'text-lg lg:text-xl' : 'text-base'}`}>
+                  {feature.description}
+                </p>
+              </div>
+            </div>
+          </div>
+        )
+      })}
+    </div>
+  </div>
+</section>
+
+<style>
+  /* 
+    Animaciones Nativas Modernas de CSS (Scroll-Driven Animations)
+    Usa el 'view()' para animar elementos basándose en la posición de scroll
+  */
+  
+  @supports (animation-timeline: view()) {
+    .bento-header {
+      animation: fadeInUp linear both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 30%;
+    }
+    
+    .bento-item {
+      animation: scaleUp linear both;
+      animation-timeline: view();
+      animation-range: entry 15% cover 35%;
+    }
+  }
+
+  /* Fallback keyframes (If browser doesn't support view() perfectly yet, 
+     it falls back gracefully, but in Chrome/Edge this creates a stunning scroll effect) */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(60px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scaleUp {
+    from {
+      opacity: 0;
+      transform: translateY(80px) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+</style>
