@@ -1,14 +1,15 @@
 ---
-import Navbar from '../components/Navbar.tsx';
-import Footer from '../components/Footer.astro';
-import '../styles/global.css';
+import Navbar from "../components/Navbar.tsx";
+import Footer from "../components/Footer.astro";
+import "../styles/global.css";
 
 interface Props {
 	title: string;
 	description?: string;
 }
 
-const { title, description = "Clínica de Implantes Salud Digital" } = Astro.props;
+const { title, description = "Clínica de Implantes Salud Digital" } =
+	Astro.props;
 ---
 
 <!doctype html>
@@ -20,15 +21,20 @@ const { title, description = "Clínica de Implantes Salud Digital" } = Astro.pro
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<meta name="description" content={description} />
-		
+
 		<!-- Google Fonts -->
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;500;600;700;800&family=Quicksand:wght@400;500;600;700&family=Raleway:wght@400;600;700;800;900&display=swap"
+			rel="stylesheet"
+		/>
 	</head>
-	<body class="min-h-screen flex flex-col font-sans antialiased text-[hsl(var(--foreground))] bg-[hsl(var(--background))]">
+	<body
+		class="min-h-screen flex flex-col font-sans antialiased text-[hsl(var(--foreground))] bg-[hsl(var(--background))]"
+	>
 		<Navbar client:load />
-		<main class="flex-grow">
+		<main class="grow">
 			<slot />
 		</main>
 		<Footer />

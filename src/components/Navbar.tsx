@@ -23,23 +23,20 @@ export default function Navbar() {
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full transition-all duration-300 ${
-        isScrolled
-          ? 'bg-white/80 backdrop-blur-md shadow-sm border-b border-gray-200/50'
-          : 'bg-white/50 backdrop-blur-sm border-b border-transparent'
-      }`}
+      className={`sticky top-0 z-50 w-full transition-all duration-300 ${isScrolled
+        ? 'bg-white/80 backdrop-blur-md shadow-sm border-b border-gray-200/50'
+        : 'bg-white/50 backdrop-blur-sm border-b border-transparent'
+        }`}
     >
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex h-20 items-center justify-between">
-          {/* Logo / Brand */}
-          <a href="#" className="flex items-center gap-2 group">
-            <span 
-              className="text-2xl font-extrabold tracking-tight transition-colors" 
-              style={{ fontFamily: "'Outfit', sans-serif" }}
-            >
-              <span className="text-gray-900">Implantes Salud </span>
-              <span style={{ color: 'hsl(var(--primary))' }}>Digital</span>
-            </span>
+          {/* Logo — imagen de marca oficial */}
+          <a href="#" className="flex items-center group">
+            <img
+              src="/images/logo.png"
+              alt="Implantes Salud"
+              className="h-20 w-auto transition-opacity group-hover:opacity-85"
+            />
           </a>
 
           {/* Desktop Navigation */}
@@ -60,7 +57,7 @@ export default function Navbar() {
               href={CLINIC_DATA.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-full px-6 py-2.5 text-sm font-medium text-white shadow-sm hover:opacity-90 hover:shadow-md transition-all duration-200 gap-2"
+              className="inline-flex items-center justify-center rounded-2xl px-6 py-2.5 text-sm font-medium text-white shadow-sm hover:opacity-90 hover:shadow-md transition-all duration-200 gap-2"
               style={{ backgroundColor: 'hsl(var(--primary))', fontFamily: "'Inter', sans-serif" }}
             >
               <MessageCircle className="h-4 w-4" />
@@ -105,7 +102,7 @@ export default function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="inline-flex w-full items-center justify-center rounded-full px-6 py-3 text-base font-medium text-white shadow-sm hover:opacity-90 transition-colors gap-2 mt-2"
+                className="inline-flex w-full items-center justify-center rounded-2xl px-6 py-3 text-base font-medium text-white shadow-sm hover:opacity-90 transition-colors gap-2 mt-2"
                 style={{ backgroundColor: 'hsl(var(--primary))', fontFamily: "'Inter', sans-serif" }}
               >
                 <MessageCircle className="h-5 w-5" />

@@ -3,22 +3,26 @@
 @theme {
   --color-background: hsl(0 0% 100%);
   --color-foreground: hsl(222.2 84% 4.9%);
-  --color-primary: hsl(181 26% 60%);
-  --color-primary-foreground: hsl(181 40% 12%);
+  /* Brand primary: Implantes Salud teal (C:56% M:5% Y:28% K:0%) */
+  --color-primary: hsl(176 47% 52%);
+  --color-primary-foreground: hsl(0 0% 100%);
+  /* Brand secondary grays */
+  --color-brand-gray-light: hsl(0 0% 71%);  /* K:30% */
+  --color-brand-gray: hsl(0 0% 50%);        /* K:50% */
   --color-accent: hsl(45 93% 47%);
   --color-accent-foreground: hsl(222.2 47.4% 11.2%);
 
-  /* Apple-like Typography */
+  /* Typography: Inter (body) + Quicksand (brand display font) */
   --font-sans: 'Inter', system-ui, sans-serif;
-  --font-display: 'Outfit', system-ui, sans-serif;
+  --font-display: 'Quicksand', 'Raleway', system-ui, sans-serif;
 }
 
 @layer base {
   :root {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
-    --primary: 181 26% 60%;
-    --primary-foreground: 181 40% 12%;
+    --primary: 176 47% 52%;
+    --primary-foreground: 0 0% 100%;
     --accent: 45 93% 47%;
     --accent-foreground: 222.2 47.4% 11.2%;
   }
