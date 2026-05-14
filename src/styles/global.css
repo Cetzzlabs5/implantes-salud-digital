@@ -3,8 +3,8 @@
 @theme {
   --color-background: hsl(0 0% 100%);
   --color-foreground: hsl(222.2 84% 4.9%);
-  --color-primary: hsl(213 94% 28%);
-  --color-primary-foreground: hsl(210 40% 98%);
+  --color-primary: hsl(181 26% 60%);
+  --color-primary-foreground: hsl(181 40% 12%);
   --color-accent: hsl(45 93% 47%);
   --color-accent-foreground: hsl(222.2 47.4% 11.2%);
 
@@ -17,50 +17,93 @@
   :root {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
-    --primary: 213 94% 28%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 181 26% 60%;
+    --primary-foreground: 181 40% 12%;
     --accent: 45 93% 47%;
     --accent-foreground: 222.2 47.4% 11.2%;
   }
-  
+
   html {
     scroll-behavior: smooth;
   }
-  
+
   body {
     font-family: var(--font-sans);
     color: var(--color-foreground);
     /* Soften the text color for general reading, classic Apple UI touch */
-    color: #475569; 
+    color: #475569;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+
+    cursor: default;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-display);
-    color: #0f172a; /* Slate 900 for high contrast headers */
+    color: #0f172a;
+    /* Slate 900 for high contrast headers */
     letter-spacing: -0.025em;
   }
 
   h1 {
-    font-weight: 800; /* Extrabold */
+    font-weight: 800;
+    /* Extrabold */
   }
 
   h2 {
-    font-weight: 700; /* Bold */
+    font-weight: 700;
+    /* Bold */
   }
 
   h3 {
-    font-weight: 700; /* Bold */
+    font-weight: 700;
+    /* Bold */
     letter-spacing: -0.015em;
   }
 
   p {
-    font-weight: 400; /* Regular for high readability */
-    line-height: 1.75; /* Más espaciado para respirar */
+    font-weight: 400;
+    /* Regular for high readability */
+    line-height: 1.75;
+    /* Más espaciado para respirar */
   }
 
-  b, strong {
-    font-weight: 600; /* Semibold for emphasis */
+  b,
+  strong {
+    font-weight: 600;
+    /* Semibold for emphasis */
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes border-glow {
+
+  0%,
+  100% {
+    border-color: hsl(var(--primary) / 0.3);
+    box-shadow: 0 0 15px hsl(var(--primary) / 0.1),
+      0 0 2px hsl(var(--primary) / 0.1);
+    transform: scale(1);
+  }
+
+  50% {
+    border-color: hsl(var(--primary) / 1);
+    box-shadow: 0 0 40px hsl(var(--primary) / 0.4),
+      0 0 10px hsl(var(--primary) / 0.2);
+    transform: scale(1.01);
   }
 }
