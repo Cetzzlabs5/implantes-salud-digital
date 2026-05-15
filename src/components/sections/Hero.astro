@@ -9,104 +9,103 @@ import {
 } from "lucide-react";
 ---
 
-<section class="relative bg-background lg:pb-16 overflow-hidden z-0">
+<section class="relative bg-background py-10 lg:pb-16 overflow-hidden z-0">
   <div
     class="absolute top-2/4 left-1/4 -translate-x-2/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/15 rounded-full blur-[100px] pointer-events-none -z-10"
   >
   </div>
 
   <div class="container mx-auto px-4 md:px-6 relative z-10">
-    <div class="grid lg:grid-cols-2 gap-16 lg:gap-12 items-center">
-      <div class="max-w-2xl relative z-20">
+    <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+      <div class="w-full relative z-20">
         <h1
-          class="text-2xl md:text-4xl lg:text-6xl text-slate-900 leading-[1.05] mb-3"
+          class="text-3xl sm:text-4xl lg:text-6xl text-slate-900 leading-tight lg:leading-[1.05] mb-3"
         >
-          Odontología Digital de Vanguardia. <br class="hidden lg:block" />
-          <span class="text-transparent bg-clip-text bg-primary block mt-2">
+          Odontología Digital de Vanguardia.
+          <span class="text-transparent bg-clip-text bg-primary block mt-1 lg:mt-2">
             Resultados para toda la vida.
           </span>
         </h1>
 
         <p
-          class="text-xl md:text-2xl text-slate-600 mb-10 leading-relaxed max-w-xl"
+          class="text-base sm:text-lg md:text-xl text-slate-600 mb-6 lg:mb-10 leading-relaxed max-w-xl"
         >
           Transformamos tu sonrisa con tecnología 3D, sin dolor y en menos
           tiempo. Respaldados por 22 años de experiencia y certificación
           internacional ISO 9001.
         </p>
 
-        <div class="flex flex-col sm:flex-row gap-5 mb-14">
+        <div class="flex flex-col sm:flex-row gap-3 sm:gap-5 mb-8 lg:mb-14">
           <a
             href={CLINIC_DATA.whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            class="group relative inline-flex items-center justify-center gap-2 bg-primary text-white px-8 py-4 rounded-2xl font-semibold text-lg border border-blue-400/30 transition-all duration-300 shadow-md hover:shadow-2xl overflow-hidden"
+            class="group relative inline-flex items-center justify-center gap-2 bg-primary text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-2xl font-semibold text-base sm:text-lg border border-blue-400/30 transition-all duration-300 shadow-md hover:shadow-2xl overflow-hidden"
           >
             <span
               class="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_ease-in-out_infinite_alternate]"
             ></span>
-
-            <MessageCircle className="w-5 h-5 relative z-10" />
+            <MessageCircle className="w-5 h-5 relative z-10 shrink-0" />
             <span class="relative z-10">Agenda tu Consulta</span>
           </a>
 
           <a
             href="#testimonios"
-            class="inline-flex items-center justify-center gap-2 bg-white/60 backdrop-blur-sm text-slate-800 border border-primary/50 px-8 py-4 rounded-2xl font-semibold text-lg transition-all duration-300 hover:bg-white hover:border-primary hover:shadow-md hover:translate-x-2"
+            class="inline-flex items-center justify-center gap-2 bg-white/60 backdrop-blur-sm text-slate-800 border border-primary/50 px-6 sm:px-8 py-3.5 sm:py-4 rounded-2xl font-semibold text-base sm:text-lg transition-all duration-300 hover:bg-white hover:border-primary hover:shadow-md hover:translate-x-2"
           >
             Ver Casos de Éxito
-            <ArrowRight className="w-5 h-5 text-primary" />
+            <ArrowRight className="w-5 h-5 text-primary shrink-0" />
           </a>
         </div>
 
         {/* Trust Badges con Glassmorphism y Borde Animado */}
         <div
-          class="border bg-white/60 backdrop-blur-md p-6 rounded-2xl animate-[border-glow_4s_ease-in-out_infinite]"
+          class="border bg-white/60 backdrop-blur-md p-4 sm:p-6 rounded-2xl animate-[border-glow_4s_ease-in-out_infinite]"
         >
           <p
-            class="text-xs font-bold text-accent mb-4 uppercase tracking-widest text-center"
+            class="text-xs font-bold text-accent mb-3 sm:mb-4 uppercase tracking-widest text-center"
           >
             Estándar de Excelencia
           </p>
-          <div class="flex justify-between">
+          <div class="grid grid-cols-3 gap-2 sm:gap-0 sm:flex sm:justify-between">
             {/* Badge 1 */}
             <div
-              class="flex items-center gap-3 px-2 py-2 transition-transform duration-300 hover:-translate-y-1"
+              class="flex flex-col sm:flex-row items-center gap-1.5 sm:gap-3 px-1 sm:px-2 py-2 transition-transform duration-300 hover:-translate-y-1"
             >
-              <div class="bg-blue-50 p-2 rounded-xl text-blue-600 shadow-sm">
-                <Users className="w-5 h-5" />
+              <div class="bg-blue-50 p-2 rounded-xl text-blue-600 shadow-sm shrink-0">
+                <Users className="w-4 h-4 sm:w-5 sm:h-5" />
               </div>
-              <span class="text-sm font-semibold text-slate-800 leading-tight"
-                >+11,000<br /><span class="font-medium text-slate-500 text-xs"
-                  >Pacientes satisfechos</span
+              <span class="text-xs sm:text-sm font-semibold text-slate-800 leading-tight text-center sm:text-left"
+                >+11,000<br /><span class="font-medium text-slate-500 text-[10px] sm:text-xs"
+                  >Pacientes</span
                 ></span
               >
             </div>
 
             {/* Badge 2 */}
             <div
-              class="flex items-center gap-3 px-2 py-2 transition-transform duration-300 hover:-translate-y-1"
+              class="flex flex-col sm:flex-row items-center gap-1.5 sm:gap-3 px-1 sm:px-2 py-2 transition-transform duration-300 hover:-translate-y-1"
             >
               <div
-                class="bg-yellow-50 p-2 rounded-xl text-yellow-600 shadow-sm"
+                class="bg-yellow-50 p-2 rounded-xl text-yellow-600 shadow-sm shrink-0"
               >
-                <Award className="w-5 h-5" />
+                <Award className="w-4 h-4 sm:w-5 sm:h-5" />
               </div>
-              <span class="text-sm font-semibold text-slate-800 leading-tight"
-                >ISO 9001<br /><span class="font-medium text-slate-500 text-xs"
+              <span class="text-xs sm:text-sm font-semibold text-slate-800 leading-tight text-center sm:text-left"
+                >ISO 9001<br /><span class="font-medium text-slate-500 text-[10px] sm:text-xs"
                   >Certificado</span
                 ></span
               >
             </div>
 
             {/* Badge 3 */}
-            <div class="flex items-center gap-3 px-2 py-2">
-              <div class="bg-slate-100 p-2 rounded-xl text-slate-600 shadow-sm">
-                <ShieldCheck className="w-5 h-5" />
+            <div class="flex flex-col sm:flex-row items-center gap-1.5 sm:gap-3 px-1 sm:px-2 py-2">
+              <div class="bg-slate-100 p-2 rounded-xl text-slate-600 shadow-sm shrink-0">
+                <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5" />
               </div>
-              <span class="text-sm font-semibold text-slate-800 leading-tight"
-                >Socios<br /><span class="font-medium text-slate-500 text-xs"
-                  >Straumann Group</span
+              <span class="text-xs sm:text-sm font-semibold text-slate-800 leading-tight text-center sm:text-left"
+                >Socios<br /><span class="font-medium text-slate-500 text-[10px] sm:text-xs"
+                  >Straumann</span
                 ></span
               >
             </div>
@@ -114,9 +113,9 @@ import {
         </div>
       </div>
 
-      {/* Columna de Imagen */}
+      {/* Columna de Imagen — oculta en mobile */}
       <div
-        class="relative w-full mx-auto lg:mx-0 mt-12 lg:mt-0 z-20 flex justify-center lg:justify-end"
+        class="hidden lg:flex relative w-full mx-auto lg:mx-0 mt-12 lg:mt-0 z-20 justify-center lg:justify-end"
       >
         <div
           class="relative w-[110%] sm:w-full lg:w-[130%] xl:w-[145%] lg:-mr-12 xl:-mr-24 group transform transition-transform duration-1000 hover:scale-[1.02]"

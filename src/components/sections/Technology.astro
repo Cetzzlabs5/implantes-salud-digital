@@ -1,0 +1,126 @@
+---
+const features = [
+  {
+    title: "Diagnóstico 3D en Tiempo Real",
+    desc: "Escáneres intraorales que capturan imágenes precisas sin moldes incómodos.",
+  },
+  {
+    title: "Mínima Radiación",
+    desc: "Radiografía digital avanzada con un 90% menos exposición para el paciente.",
+  },
+  {
+    title: "Planificación y Guía Quirúrgica 3D",
+    desc: "Precisión milimétrica garantizada mediante simulaciones digitales antes de operar.",
+  },
+  {
+    title: "Celeridad Garantizada",
+    desc: "Impresoras 3D in situ para fabricar restauraciones y guías más rápido.",
+  },
+];
+---
+
+<section class="py-16 lg:py-24 bg-background relative overflow-hidden">
+  {/* Glow sutil fondo */}
+  <div
+    class="absolute bottom-0 left-0 w-[600px] h-[600px] bg-primary/8 rounded-full blur-[120px] pointer-events-none -z-10"
+  ></div>
+
+  <div class="container mx-auto px-4 md:px-6">
+    <div
+      class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center max-w-6xl mx-auto"
+    >
+      {/* ── Columna Izquierda: Imágenes superpuestas ── */}
+      <div class="relative flex justify-center items-end min-h-[380px] lg:min-h-[460px]">
+        {/* Imagen 1 — grande, inclinada levemente, atrás */}
+        <div
+          class="absolute left-0 bottom-0 w-[60%] sm:w-[55%] rounded-3xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.15)] border-4 border-white z-10 -rotate-2 hover:rotate-0 transition-transform duration-500"
+        >
+          <img
+            src="/images/dental-3d-printer.png"
+            alt="Impresora 3D dental fabricando una guía quirúrgica"
+            class="w-full h-full object-cover aspect-[4/5]"
+          />
+        </div>
+
+        {/* Imagen 2 — más pequeña, adelante, desplazada arriba-derecha */}
+        <div
+          class="absolute right-0 top-0 w-[55%] sm:w-[50%] rounded-3xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.18)] border-4 border-white z-20 rotate-1 hover:rotate-0 transition-transform duration-500"
+        >
+          <img
+            src="/images/dental-cadcam.png"
+            alt="Pantalla con diseño digital de sonrisa CAD/CAM"
+            class="w-full h-full object-cover aspect-[4/5]"
+          />
+        </div>
+
+        {/* Badge flotante — esquina inferior derecha */}
+        <div
+          class="absolute bottom-4 right-4 z-30 bg-white/90 backdrop-blur-sm border border-primary/20 rounded-2xl px-4 py-3 shadow-xl flex items-center gap-3"
+        >
+          <div class="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <div>
+            <p class="text-xs font-extrabold text-slate-900 leading-tight">Tecnología ISO</p>
+            <p class="text-[10px] text-primary font-semibold">Certificada</p>
+          </div>
+        </div>
+      </div>
+
+      {/* ── Columna Derecha: Contenido ── */}
+      <div>
+        <span
+          class="text-primary font-bold tracking-widest uppercase text-xs mb-4 block"
+          >Tecnología de Vanguardia</span
+        >
+
+        <h2
+          class="text-3xl md:text-4xl lg:text-5xl text-slate-900 font-bold leading-tight mb-6"
+        >
+          Revolución digital para una odontología{" "}
+          <span class="text-primary">precisa, rápida</span> y predecible.
+        </h2>
+
+        <p class="text-slate-500 leading-relaxed mb-8 text-base">
+          En <strong class="text-slate-700">Implantes Salud Digital</strong> combinamos
+          22 años de experiencia clínica con los sistemas de odontología digital más
+          avanzados. Utilizamos protocolos científicos actualizados y equipamiento de
+          última generación para garantizar diagnósticos milimétricos y tratamientos
+          eficaces.
+        </p>
+
+        {/* Bullets */}
+        <ul class="space-y-4">
+          {
+            features.map((f) => (
+              <li class="flex items-start gap-3 group">
+                {/* Check icon */}
+                <div class="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-primary/20 transition-colors duration-200">
+                  <svg
+                    class="w-3.5 h-3.5 text-primary"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="3"
+                  >
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                </div>
+                <div>
+                  <p class="text-slate-900 font-semibold text-sm leading-snug">
+                    {f.title}
+                  </p>
+                  <p class="text-slate-500 text-sm leading-snug mt-0.5">
+                    {f.desc}
+                  </p>
+                </div>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
