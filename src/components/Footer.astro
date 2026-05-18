@@ -164,50 +164,6 @@ import { CLINIC_DATA } from "../lib/constants";
       <p>
         &copy; {new Date().getFullYear()} Implantes Salud Digital.
       </p>
-      <a
-        href={CLINIC_DATA.mapsUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="block mt-6 relative rounded-xl max-w-2/4 overflow-hidden group border border-slate-700 hover:border-primary/50 transition-colors w-full h-[150px]"
-      >
-        {/* Overlay para capturar el click y mostrar el botón */}
-        <div
-          class="absolute inset-0 z-10 flex items-center justify-center bg-slate-900/30 group-hover:bg-slate-900/10 transition-colors"
-        >
-          <div
-            class="bg-primary text-white px-4 py-2 rounded-full text-sm font-semibold transform group-hover:scale-105 transition-transform flex items-center gap-2 shadow-lg"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="w-4 h-4"
-              ><path
-                d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"
-              ></path><circle cx="12" cy="10" r="3"></circle></svg
-            >
-            Cómo llegar
-          </div>
-        </div>
-        {
-          /* iframe de Google Maps (pointer-events-none para que el click lo tome el overlay del anchor) */
-        }
-        <iframe
-          src="https://maps.google.com/maps?q=Lerma%20294,%20Salta,%20Argentina&t=&z=15&ie=UTF8&iwloc=&output=embed"
-          width="100%"
-          height="150"
-          style="border:0;"
-          allowfullscreen=""
-          loading="lazy"
-          class="pointer-events-none opacity-80 group-hover:opacity-100 transition-opacity absolute inset-0 object-cover"
-        ></iframe>
-      </a>
       <span class="text-xs text-slate-400"
         >Desarrollado por <a
           href="https://cetzzlabs.com.ar"

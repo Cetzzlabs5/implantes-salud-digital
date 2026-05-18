@@ -1,0 +1,157 @@
+---
+const cases = [
+  {
+    id: "caso-1",
+    label: "Rehabilitación Completa",
+    title: "Caso 1: Sonrisa completa en tiempo récord",
+    description:
+      "Paciente con pérdida severa de piezas. Restauración total del arco superior con carga inmediata.",
+    image: "/images/case-full-arch.png",
+    imageAlt: "Antes y después de rehabilitación completa con implantes de arco superior",
+    tag: "Carga Inmediata",
+  },
+  {
+    id: "caso-2",
+    label: "Estética Anterior",
+    title: "Caso 2: Estética natural invisible",
+    description:
+      "Reemplazo de dientes frontales dañados con coronas Straumann®, logrando mimetismo perfecto.",
+    image: "/images/case-anterior-crowns.png",
+    imageAlt: "Antes y después de coronas de porcelana en dientes frontales",
+    tag: "Coronas Straumann®",
+  },
+  {
+    id: "caso-3",
+    label: "Proceso Digital",
+    title: "Caso 3: De la simulación 3D a la realidad",
+    description:
+      "Muestra cómo el Diseño Digital de Sonrisa se traduce exactamente en el resultado final del paciente.",
+    image: "/images/case-digital-3d.png",
+    imageAlt: "Comparación entre simulación digital 3D y resultado real del implante",
+    tag: "Diseño Digital",
+  },
+];
+---
+
+<section class="py-16 lg:py-24 bg-background relative overflow-hidden">
+  {/* Glow decorativo */}
+  <div
+    class="absolute top-0 right-0 w-[700px] h-[500px] bg-primary/8 rounded-full blur-[140px] pointer-events-none -z-10"
+  ></div>
+
+  <div class="container mx-auto px-4 md:px-6">
+    {/* Header */}
+    <div class="text-center max-w-3xl mx-auto mb-14">
+      <span class="text-primary font-bold tracking-widest uppercase text-xs mb-4 block">
+        Casos Reales
+      </span>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl text-slate-900 font-bold mb-5 leading-tight">
+        Resultados Reales: Transformaciones que{" "}
+        <span class="text-primary">cambian vidas</span>
+      </h2>
+      <p class="text-lg text-slate-500 leading-relaxed">
+        Mirá el poder de la odontología digital en casos de pacientes reales de
+        <strong class="text-slate-700">Implantes Salud</strong>.
+      </p>
+    </div>
+
+    {/* Grid de 3 tarjetas */}
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+      {
+        cases.map((c) => (
+          <article
+            id={c.id}
+            class="group bg-white rounded-3xl border border-primary/10 overflow-hidden shadow-[0_8px_30px_rgba(126,179,180,0.12)] hover:shadow-[0_20px_60px_rgba(126,179,180,0.25)] hover:-translate-y-2 transition-all duration-500 flex flex-col"
+          >
+            {/* Imagen 16:9 con overlay de labels Antes/Después */}
+            <div class="relative w-full aspect-video overflow-hidden">
+              <img
+                src={c.image}
+                alt={c.imageAlt}
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                loading="lazy"
+              />
+
+              {/* Labels flotantes Antes / Después */}
+              <div class="absolute inset-0 flex pointer-events-none">
+                <div class="flex-1 flex items-end pb-3 pl-3">
+                  <span class="bg-black/50 backdrop-blur-sm text-white text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full">
+                    Antes
+                  </span>
+                </div>
+                <div class="flex-1 flex items-end justify-end pb-3 pr-3">
+                  <span class="bg-primary/80 backdrop-blur-sm text-white text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full">
+                    Después
+                  </span>
+                </div>
+              </div>
+
+              {/* Tag de tratamiento */}
+              <div class="absolute top-3 left-3">
+                <span class="bg-white/90 backdrop-blur-sm text-primary text-[10px] font-extrabold uppercase tracking-widest px-2.5 py-1 rounded-full border border-primary/20 shadow-sm">
+                  {c.tag}
+                </span>
+              </div>
+            </div>
+
+            {/* Contenido */}
+            <div class="p-6 flex flex-col flex-1">
+              <p class="text-xs font-bold text-primary uppercase tracking-widest mb-2">
+                {c.label}
+              </p>
+              <h3 class="text-lg font-bold text-slate-900 mb-3 leading-snug group-hover:text-primary transition-colors duration-300">
+                {c.title}
+              </h3>
+              <p class="text-sm text-slate-500 leading-relaxed flex-1">
+                {c.description}
+              </p>
+
+              {/* Divider + CTA */}
+              <div class="mt-5 pt-4 border-t border-slate-100">
+                <button
+                  class="cta-contact inline-flex items-center gap-1.5 text-primary font-semibold text-sm hover:gap-3 transition-all duration-200 group/btn cursor-pointer"
+                  data-treatment="Implantología"
+                >
+                  Consultar por este tratamiento
+                  <svg
+                    class="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-200"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  >
+                    <path d="m9 18 6-6-6-6" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+
+    {/* Nota de pie */}
+    <p class="text-center text-xs text-slate-400 mt-10 max-w-xl mx-auto">
+      * Las imágenes representan resultados clínicos típicos. Los resultados individuales pueden variar según las condiciones de cada paciente.
+    </p>
+  </div>
+</section>
+
+<script>
+  // CTA → scroll a contacto (mismo patrón que Features)
+  document.querySelectorAll<HTMLButtonElement>(".cta-contact").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const treatment = btn.dataset.treatment || "";
+      const treatmentSelect = document.getElementById("treatment") as HTMLSelectElement;
+      if (treatmentSelect && treatment) {
+        treatmentSelect.value = treatment;
+        treatmentSelect.classList.add("border-primary", "!bg-primary/5");
+        setTimeout(() => {
+          treatmentSelect.classList.remove("border-primary", "!bg-primary/5");
+        }, 2000);
+      }
+      const contactSection = document.getElementById("contacto");
+      if (contactSection) contactSection.scrollIntoView({ behavior: "smooth" });
+    });
+  });
+</script>

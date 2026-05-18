@@ -1,0 +1,370 @@
+---
+const slides = [
+  {
+    src: "/images/clinic_reception.png",
+    alt: "Sala de espera y recepción del consultorio",
+    caption: "Recepción & Sala de Espera",
+  },
+  {
+    src: "/images/clinic_operatory.png",
+    alt: "Consultorio equipado con tecnología de vanguardia",
+    caption: "Box de Atención de Vanguardia",
+  },
+  {
+    src: "/images/clinic_3d_scanner.png",
+    alt: "Escáner intraoral 3D en uso",
+    caption: "Escáner Intraoral 3D",
+  },
+  {
+    src: "/images/clinic_lab.png",
+    alt: "Laboratorio digital in-house con impresoras 3D",
+    caption: "Laboratorio Digital In-House",
+  },
+  {
+    src: "/images/clinic_consultation.png",
+    alt: "Consulta personalizada con el paciente",
+    caption: "Consulta Personalizada",
+  },
+];
+---
+
+<section class="py-16 lg:py-20 bg-background overflow-hidden">
+  <div class="container mx-auto px-4 md:px-6">
+    {/* Header */}
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      <span
+        class="text-primary font-bold tracking-widest uppercase text-xs mb-4 block"
+      >
+        Nuestro Espacio
+      </span>
+      <h2
+        class="text-3xl md:text-4xl lg:text-5xl text-slate-900 font-bold mb-4 leading-tight"
+      >
+        Un entorno diseñado para tu <span class="text-primary"
+          >confort y confianza</span
+        >
+      </h2>
+      <p class="text-slate-500 text-base leading-relaxed">
+        Conocé las instalaciones donde cada tratamiento se lleva a cabo con la
+        más alta tecnología y calidez humana.
+      </p>
+    </div>
+
+    {/* Carrusel wrapper */}
+    <div class="relative max-w-5xl mx-auto">
+      {/* Track */}
+      <div
+        id="gallery-track"
+        class="flex overflow-x-auto snap-x snap-mandatory scroll-smooth gap-4 pb-2"
+        style="scrollbar-width: none; -ms-overflow-style: none;"
+      >
+        {
+          slides.map((slide, i) => (
+            <div
+              class="gallery-slide snap-center shrink-0 w-full relative rounded-3xl overflow-hidden shadow-[0_12px_40px_rgba(0,0,0,0.12)] group cursor-pointer"
+              data-index={i}
+              data-src={slide.src}
+              data-caption={slide.caption}
+              role="button"
+              tabindex="0"
+              aria-label={`Ampliar imagen: ${slide.caption}`}
+            >
+              <div class="aspect-video w-full">
+                <img
+                  src={slide.src}
+                  alt={slide.alt}
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                  loading="lazy"
+                />
+              </div>
+              {/* Caption overlay */}
+              <div class="absolute bottom-0 inset-x-0 bg-linear-to-t from-black/60 via-black/20 to-transparent px-6 py-5">
+                <p class="text-white font-semibold text-sm tracking-wide">
+                  {slide.caption}
+                </p>
+                <p class="text-white/60 text-xs mt-0.5">
+                  {i + 1} / {slides.length}
+                </p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+
+      {/* Prev arrow */}
+      <button
+        id="gallery-prev"
+        aria-label="Imagen anterior"
+        class="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm border border-white shadow-lg cursor-pointer flex items-center justify-center text-slate-700 hover:bg-primary hover:text-white hover:border-primary transition-all duration-200"
+      >
+        <svg
+          class="w-5 h-5"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+        >
+          <path d="m15 18-6-6 6-6"></path>
+        </svg>
+      </button>
+
+      {/* Next arrow */}
+      <button
+        id="gallery-next"
+        aria-label="Imagen siguiente"
+        class="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm border border-white shadow-lg cursor-pointer flex items-center justify-center text-slate-700 hover:bg-primary hover:text-white hover:border-primary transition-all duration-200"
+      >
+        <svg
+          class="w-5 h-5"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+        >
+          <path d="m9 18 6-6-6-6"></path>
+        </svg>
+      </button>
+    </div>
+
+    {/* Dots */}
+    <div
+      id="gallery-dots"
+      class="flex gap-2 justify-center max-w-5xl mx-auto mt-5"
+    >
+      {
+        slides.map((_, i) => (
+          <button
+            class={`gallery-dot rounded-full h-2 transition-all cursor-pointer duration-300 ${i === 0 ? "bg-primary w-6" : "bg-primary/25 w-2"}`}
+            data-dot={i}
+            aria-label={`Ir a imagen ${i + 1}`}
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+{/* ── Lightbox Dialog ── */}
+<dialog
+  id="gallery-lightbox"
+  class="fixed inset-0 z-50 bg-transparent p-0 m-0 max-w-none max-h-none w-full h-full backdrop:bg-black/80 backdrop:backdrop-blur-sm"
+>
+  <div class="flex items-center justify-center w-full h-full p-4">
+    <div class="relative max-w-4xl w-full">
+      {/* Close button */}
+      <button
+        id="lightbox-close"
+        aria-label="Cerrar imagen"
+        class="absolute -top-4 -right-4 z-10 w-10 h-10 rounded-full bg-white text-slate-800 flex items-center justify-center shadow-xl hover:bg-primary hover:text-white transition-all duration-200"
+      >
+        <svg
+          class="w-5 h-5"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+        >
+          <path d="M18 6 6 18M6 6l12 12"></path>
+        </svg>
+      </button>
+
+      {/* Imagen expandida */}
+      <img
+        id="lightbox-img"
+        src=""
+        alt=""
+        class="w-full rounded-2xl shadow-2xl object-contain max-h-[80vh]"
+      />
+
+      {/* Caption */}
+      <p
+        id="lightbox-caption"
+        class="text-center text-white/80 text-sm font-medium mt-3 tracking-wide"
+      >
+      </p>
+    </div>
+  </div>
+</dialog>
+
+<style>
+  #gallery-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Lightbox */
+  #gallery-lightbox {
+    border: none;
+    outline: none;
+    background: transparent;
+  }
+  #gallery-lightbox::backdrop {
+    background: rgba(0, 0, 0, 0.82);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+  #gallery-lightbox[open] {
+    animation: lightbox-in 0.25s ease-out forwards;
+  }
+  @keyframes lightbox-in {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const track = document.getElementById(
+      "gallery-track",
+    ) as HTMLElement | null;
+    const slides = Array.from(
+      document.querySelectorAll<HTMLElement>(".gallery-slide"),
+    );
+    const dots = Array.from(
+      document.querySelectorAll<HTMLButtonElement>(".gallery-dot"),
+    );
+    const prevBtn = document.getElementById(
+      "gallery-prev",
+    ) as HTMLButtonElement | null;
+    const nextBtn = document.getElementById(
+      "gallery-next",
+    ) as HTMLButtonElement | null;
+
+    if (!track || slides.length === 0) return;
+
+    let current = 0;
+    const total = slides.length;
+    let autoplay = true;
+    let autoplayTimer: ReturnType<typeof setInterval>;
+
+    function updateUI() {
+      dots.forEach((dot, i) => {
+        dot.classList.toggle("bg-primary", i === current);
+        dot.classList.toggle("w-6", i === current);
+        dot.classList.toggle("bg-primary/25", i !== current);
+        dot.classList.toggle("w-2", i !== current);
+      });
+      if (prevBtn) prevBtn.style.opacity = current === 0 ? "0.4" : "1";
+      if (nextBtn) nextBtn.style.opacity = current === total - 1 ? "0.4" : "1";
+    }
+
+    function goTo(index: number) {
+      current = (index + total) % total; // wrap around
+      track!.scrollTo({ left: slides[current].offsetLeft, behavior: "smooth" });
+      updateUI();
+    }
+
+    function startAutoplay() {
+      autoplayTimer = setInterval(() => goTo(current + 1), 4000);
+      autoplay = true;
+    }
+
+    function stopAutoplay() {
+      clearInterval(autoplayTimer);
+      autoplay = false;
+    }
+
+    // Botones
+    prevBtn?.addEventListener("click", () => {
+      stopAutoplay();
+      goTo(current - 1);
+    });
+    nextBtn?.addEventListener("click", () => {
+      stopAutoplay();
+      goTo(current + 1);
+    });
+    dots.forEach((dot, i) =>
+      dot.addEventListener("click", () => {
+        stopAutoplay();
+        goTo(i);
+      }),
+    );
+
+    // Sync al swipe
+    let scrollTimer: ReturnType<typeof setTimeout>;
+    track.addEventListener("scroll", () => {
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(() => {
+        const tLeft = track.getBoundingClientRect().left;
+        let closest = 0,
+          minDist = Infinity;
+        slides.forEach((s, i) => {
+          const d = Math.abs(s.getBoundingClientRect().left - tLeft);
+          if (d < minDist) {
+            minDist = d;
+            closest = i;
+          }
+        });
+        if (closest !== current) {
+          current = closest;
+          updateUI();
+        }
+      }, 80);
+    });
+
+    // Pausar autoplay al hacer hover sobre el carrusel
+    track.addEventListener("mouseenter", stopAutoplay);
+    track.addEventListener("mouseleave", startAutoplay);
+
+    // ── Lightbox ──────────────────────────────────────────────────────────────
+    const lightbox = document.getElementById(
+      "gallery-lightbox",
+    ) as HTMLDialogElement | null;
+    const lightboxImg = document.getElementById(
+      "lightbox-img",
+    ) as HTMLImageElement | null;
+    const lightboxCaption = document.getElementById(
+      "lightbox-caption",
+    ) as HTMLElement | null;
+    const lightboxClose = document.getElementById(
+      "lightbox-close",
+    ) as HTMLButtonElement | null;
+
+    function openLightbox(src: string, caption: string) {
+      if (!lightbox || !lightboxImg || !lightboxCaption) return;
+      lightboxImg.src = src;
+      lightboxImg.alt = caption;
+      lightboxCaption.textContent = caption;
+      lightbox.showModal();
+      stopAutoplay();
+    }
+
+    function closeLightbox() {
+      lightbox?.close();
+    }
+
+    // Click en cada slide → abrir lightbox
+    slides.forEach((slide) => {
+      const src = slide.dataset.src || "";
+      const caption = slide.dataset.caption || "";
+      slide.addEventListener("click", () => openLightbox(src, caption));
+      slide.addEventListener("keydown", (e) => {
+        if (
+          (e as KeyboardEvent).key === "Enter" ||
+          (e as KeyboardEvent).key === " "
+        ) {
+          e.preventDefault();
+          openLightbox(src, caption);
+        }
+      });
+    });
+
+    // Cerrar con botón X
+    lightboxClose?.addEventListener("click", closeLightbox);
+
+    // Cerrar al hacer click en el backdrop (fuera de la imagen)
+    lightbox?.addEventListener("click", (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+    // ─────────────────────────────────────────────────────────────────────────
+
+    // Init
+    updateUI();
+    startAutoplay();
+  });
+</script>

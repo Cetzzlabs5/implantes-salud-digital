@@ -224,8 +224,8 @@ const reviews = [
     function goTo(index: number) {
       current = Math.max(0, Math.min(index, total - 1));
       const slide = slides[current];
-      // scrollLeft relativo al track
-      track.scrollTo({
+      // scrollLeft relativo al track — track is guaranteed non-null by the early return above
+      track!.scrollTo({
         left: slide.offsetLeft - 16,
         behavior: "smooth",
       });
