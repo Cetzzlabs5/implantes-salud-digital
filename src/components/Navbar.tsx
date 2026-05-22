@@ -34,7 +34,7 @@ export default function Navbar() {
           {/* Logo — imagen de marca oficial */}
           <a href="#" className="flex items-center group">
             <img
-              src="/images/logo.png"
+              src="/images/logo.webp"
               alt="Implantes Salud"
               className="h-20 w-auto transition-opacity group-hover:opacity-85"
             />
