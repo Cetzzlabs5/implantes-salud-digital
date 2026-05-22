@@ -7,6 +7,7 @@ const steps = [
     step: "Primero",
     title: "Hacemos tu diagnóstico 3D",
     subtitle: "Sin moldes. Sin esperas.",
+    image: "/images/journey-step1.png",
     description:
       "Escaneamos tu boca en minutos con un escáner intraoral de última generación. Sin moldes incómodos y con un 90% menos de radiación que los métodos tradicionales. Ves tu diagnóstico digital en pantalla al instante.",
   },
@@ -15,6 +16,7 @@ const steps = [
     step: "Luego",
     title: "Simulamos tu sonrisa ideal",
     subtitle: "Aprobás el resultado antes de empezar.",
+    image: "/images/journey-step2.png",
     description:
       "A través de un software de diseño digital, planificamos tu tratamiento de forma milimétrica. Te mostramos una simulación 3D de cómo quedará tu sonrisa final para que decidas con total seguridad y sin sorpresas.",
   },
@@ -23,6 +25,7 @@ const steps = [
     step: "Después",
     title: "Realizamos el procedimiento",
     subtitle: "Precisión digital, mínimo dolor.",
+    image: "/images/journey-step3.png",
     description:
       "Utilizamos guías quirúrgicas impresas en 3D y protocolos mínimamente invasivos. Esto se traduce en un proceso mucho más rápido en el sillón, máxima precisión clínica y una recuperación notablemente más acelerada.",
   },
@@ -31,13 +34,14 @@ const steps = [
     step: "Finalmente",
     title: "Tu nueva sonrisa, para siempre",
     subtitle: "Garantía internacional de por vida.",
+    image: "/images/journey-step4.png",
     description:
       "Colocamos implantes de las líneas premium líderes mundiales (Straumann® y Neodent®). Recuperás tu estética natural, tu confianza y tu calidad de vida, respaldado por una garantía internacional de por vida.",
   },
 ];
 ---
 
-<section class="py-16 lg:py-24 bg-white overflow-hidden">
+<section id="proceso" class="py-16 lg:py-24 bg-white overflow-hidden">
   <div class="container mx-auto px-4 md:px-6">
     {/* Header */}
     <div class="text-center max-w-2xl mx-auto mb-14">
@@ -66,30 +70,43 @@ const steps = [
         {
           steps.map((step, i) => (
             <div
-              class="journey-slide shrink-0 w-[85vw] sm:w-[420px] bg-white rounded-3xl border border-slate-100 shadow-[0_6px_30px_rgba(126,179,180,0.13)] p-8 flex flex-col gap-5 transition-all duration-500"
+              class="journey-slide shrink-0 w-[85vw] sm:w-[420px] bg-white rounded-3xl border border-slate-100 shadow-[0_6px_30px_rgba(126,179,180,0.13)] overflow-hidden flex flex-col gap-0 transition-all duration-500"
               data-slide={i}
             >
-              {/* Header de la card */}
-              <div class="flex items-start justify-between">
-                <span class="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 px-3 py-1 rounded-full">
-                  {step.step}
-                </span>
-                <span class="text-5xl font-black text-slate-400 leading-none select-none -mt-1">
-                  {step.number}
-                </span>
+              {/* Imagen del paso */}
+              <div class="w-full aspect-video overflow-hidden">
+                <img
+                  src={step.image}
+                  alt={step.title}
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                />
               </div>
 
-              {/* Contenido */}
-              <div class="flex-1">
-                <p class="text-[11px] font-bold text-primary uppercase tracking-widest mb-2">
-                  {step.subtitle}
-                </p>
-                <h3 class="text-xl font-bold text-slate-900 mb-3 leading-snug">
-                  {step.title}
-                </h3>
-                <p class="text-slate-500 text-sm leading-relaxed">
-                  {step.description}
-                </p>
+              {/* Contenido de la card */}
+              <div class="p-8 flex flex-col gap-5 flex-1">
+                {/* Header de la card */}
+                <div class="flex items-start justify-between">
+                  <span class="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 px-3 py-1 rounded-full">
+                    {step.step}
+                  </span>
+                  <span class="text-5xl font-black text-slate-400 leading-none select-none -mt-1">
+                    {step.number}
+                  </span>
+                </div>
+
+                {/* Texto */}
+                <div class="flex-1">
+                  <p class="text-[11px] font-bold text-primary uppercase tracking-widest mb-2">
+                    {step.subtitle}
+                  </p>
+                  <h3 class="text-xl font-bold text-slate-900 mb-3 leading-snug">
+                    {step.title}
+                  </h3>
+                  <p class="text-slate-500 text-sm leading-relaxed">
+                    {step.description}
+                  </p>
+                </div>
               </div>
             </div>
           ))

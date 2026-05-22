@@ -4,9 +4,10 @@ import { CLINIC_DATA } from '../lib/constants';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const NAV_LINKS = [
-  { name: 'Especialidades', href: '#especialidades' },
+  { name: 'Tratamientos', href: '#tratamientos' },
+  { name: 'El Proceso', href: '#proceso' },
   { name: 'Tecnología', href: '#tecnologia' },
-  { name: 'Testimonios', href: '#testimonios' },
+  { name: 'Resultados', href: '#casos-reales' },
 ];
 
 export default function Navbar() {

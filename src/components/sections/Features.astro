@@ -1,6 +1,20 @@
 ---
 const treatments = [
   {
+    id: "estetica",
+    name: "Odontología Estética",
+    tag: "Diseño de sonrisa",
+    headline: "La sonrisa que siempre quisiste.",
+    description:
+      "Carillas de porcelana ultrafinas, blanqueamiento profesional y remodelado dental para transformar tu sonrisa sin alterar la estructura del diente. Cada diseño es único, personalizado a tu anatomía y pensado para que te veas y te sientas increíble.",
+    points: [
+      "Carillas de porcelana",
+      "Blanqueamiento profesional",
+      "Diseño digital de sonrisa",
+      "Remodelado estético",
+    ],
+  },
+  {
     id: "implantologia",
     name: "Implantología",
     tag: "Especialidad principal",
@@ -70,20 +84,7 @@ const treatments = [
       "Prótesis sobre implantes",
     ],
   },
-  {
-    id: "estetica",
-    name: "Odontología Estética",
-    tag: "Diseño de sonrisa",
-    headline: "La sonrisa que siempre quisiste.",
-    description:
-      "Carillas de porcelana ultrafinas, blanqueamiento profesional y remodelado dental para transformar tu sonrisa sin alterar la estructura del diente. Cada diseño es único, personalizado a tu anatomía y pensado para que te veas y te sientas increíble.",
-    points: [
-      "Carillas de porcelana",
-      "Blanqueamiento profesional",
-      "Diseño digital de sonrisa",
-      "Remodelado estético",
-    ],
-  },
+
   {
     id: "cirugia",
     name: "Cirugía Oral",
@@ -115,7 +116,7 @@ const treatments = [
 ];
 ---
 
-<section class="py-16 lg:py-24 bg-background overflow-hidden">
+<section id="tratamientos" class="py-16 lg:py-24 bg-background overflow-hidden">
   <div class="container mx-auto px-4 md:px-6">
     <div class="text-center max-w-3xl mx-auto mb-14">
       <span
