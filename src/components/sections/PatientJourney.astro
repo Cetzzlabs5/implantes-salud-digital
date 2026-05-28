@@ -120,7 +120,7 @@ const steps = [
           {
             steps.map((_, i) => (
               <button
-                class={`journey-dot rounded-full transition-all duration-300 ${i === 0 ? "w-6 h-2 bg-primary" : "w-2 h-2 bg-slate-300"}`}
+                class={`journey-dot rounded-full transition-all duration-300 ${i === 0 ? "w-6 h-2 bg-primary" : "w-2 h-2 bg-slate-300 cursor-pointer"}`}
                 data-dot={i}
                 aria-label={`Ir al paso ${i + 1}`}
               />
@@ -132,7 +132,7 @@ const steps = [
         <div class="flex gap-3">
           <button
             id="journey-prev"
-            class="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:border-primary hover:text-primary transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed"
+            class="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:border-primary hover:text-primary transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
             disabled
             aria-label="Anterior"
           >
@@ -146,7 +146,7 @@ const steps = [
           </button>
           <button
             id="journey-next"
-            class="w-10 h-10 rounded-full border border-primary bg-primary text-primary-foreground flex items-center justify-center hover:bg-primary/90 transition-all duration-200"
+            class="w-10 h-10 rounded-full border border-primary bg-primary text-primary-foreground flex items-center justify-center hover:bg-primary/90 transition-all duration-200 cursor-pointer"
             aria-label="Siguiente"
           >
             <svg

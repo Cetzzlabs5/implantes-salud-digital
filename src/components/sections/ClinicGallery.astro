@@ -2,18 +2,12 @@
 const slides = [
   {
     src: "/images/galery2.webp",
-    alt: "Consultorio equipado con tecnología de vanguardia",
-    caption: "Box de Atención de Vanguardia",
   },
   {
     src: "/images/galery1.webp",
-    alt: "Escáner intraoral 3D en uso",
-    caption: "Escáner Intraoral 3D",
   },
   {
     src: "/images/hero.webp",
-    alt: "Sala de espera y recepción del consultorio",
-    caption: "Recepción & Sala de Espera",
   },
 ];
 ---
@@ -51,28 +45,24 @@ const slides = [
         {
           slides.map((slide, i) => (
             <div
-              class="gallery-slide snap-center shrink-0 w-full relative rounded-3xl overflow-hidden shadow-[0_12px_40px_rgba(0,0,0,0.12)] group cursor-pointer"
+              class="gallery-slide snap-center shrink-0 w-full relative rounded-3xl overflow-hidden group cursor-pointer"
               data-index={i}
               data-src={slide.src}
-              data-caption={slide.caption}
               role="button"
               tabindex="0"
-              aria-label={`Ampliar imagen: ${slide.caption}`}
+              aria-label={`Ver imagen ${i + 1}`}
             >
               <div class="aspect-video w-full">
                 <img
                   src={slide.src}
-                  alt={slide.alt}
+                  alt=""
                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                   loading="lazy"
                 />
               </div>
-              {/* Caption overlay */}
-              <div class="absolute bottom-0 inset-x-0 bg-linear-to-t from-black/60 via-black/20 to-transparent px-6 py-5">
-                <p class="text-white font-semibold text-sm tracking-wide">
-                  {slide.caption}
-                </p>
-                <p class="text-white/60 text-xs mt-0.5">
+              {/* Indicador de posición flotante */}
+              <div class="absolute bottom-4 right-6 bg-black/50 backdrop-blur-xs px-3 py-1 rounded-full z-10">
+                <p class="text-white text-xs font-semibold">
                   {i + 1} / {slides.length}
                 </p>
               </div>
@@ -145,7 +135,7 @@ const slides = [
       <button
         id="lightbox-close"
         aria-label="Cerrar imagen"
-        class="absolute -top-4 -right-4 z-10 w-10 h-10 rounded-full bg-white text-slate-800 flex items-center justify-center shadow-xl hover:bg-primary hover:text-white transition-all duration-200"
+        class="absolute -top-4 -right-4 z-10 w-10 h-10 rounded-full bg-white text-slate-800 flex items-center justify-center shadow-xl hover:bg-primary hover:text-white transition-all duration-200 cursor-pointer"
       >
         <svg
           class="w-5 h-5"
@@ -163,15 +153,8 @@ const slides = [
         id="lightbox-img"
         src=""
         alt=""
-        class="w-full rounded-2xl shadow-2xl object-contain max-h-[80vh]"
+        class="w-full rounded-2xl object-contain max-h-[80vh]"
       />
-
-      {/* Caption */}
-      <p
-        id="lightbox-caption"
-        class="text-center text-white/80 text-sm font-medium mt-3 tracking-wide"
-      >
-      </p>
     </div>
   </div>
 </dialog>
@@ -308,18 +291,13 @@ const slides = [
     const lightboxImg = document.getElementById(
       "lightbox-img",
     ) as HTMLImageElement | null;
-    const lightboxCaption = document.getElementById(
-      "lightbox-caption",
-    ) as HTMLElement | null;
     const lightboxClose = document.getElementById(
       "lightbox-close",
     ) as HTMLButtonElement | null;
 
-    function openLightbox(src: string, caption: string) {
-      if (!lightbox || !lightboxImg || !lightboxCaption) return;
+    function openLightbox(src: string) {
+      if (!lightbox || !lightboxImg) return;
       lightboxImg.src = src;
-      lightboxImg.alt = caption;
-      lightboxCaption.textContent = caption;
       lightbox.showModal();
       stopAutoplay();
     }
@@ -331,15 +309,14 @@ const slides = [
     // Click en cada slide → abrir lightbox
     slides.forEach((slide) => {
       const src = slide.dataset.src || "";
-      const caption = slide.dataset.caption || "";
-      slide.addEventListener("click", () => openLightbox(src, caption));
+      slide.addEventListener("click", () => openLightbox(src));
       slide.addEventListener("keydown", (e) => {
         if (
           (e as KeyboardEvent).key === "Enter" ||
           (e as KeyboardEvent).key === " "
         ) {
           e.preventDefault();
-          openLightbox(src, caption);
+          openLightbox(src);
         }
       });
     });
