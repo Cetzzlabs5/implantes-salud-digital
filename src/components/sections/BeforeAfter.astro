@@ -6,9 +6,13 @@ const cases = [
     title: "Caso 1: Sonrisa completa en tiempo récord",
     description:
       "Paciente con pérdida severa de piezas. Restauración total del arco superior con carga inmediata.",
-    image: "/images/case-full-arch.webp",
-    imageAlt: "Antes y después de rehabilitación completa con implantes de arco superior",
+    imageBefore: "/images/caso1-antes.webp",
+    imageAfter: "/images/caso1-despues.webp",
+    imageAlt:
+      "Antes y después de rehabilitación completa con implantes de arco superior",
     tag: "Carga Inmediata",
+    beforePosition: "center 50%",
+    afterPosition: "center 50%",
   },
   {
     id: "caso-2",
@@ -16,9 +20,12 @@ const cases = [
     title: "Caso 2: Estética natural invisible",
     description:
       "Reemplazo de dientes frontales dañados con coronas Straumann®, logrando mimetismo perfecto.",
-    image: "/images/case-anterior-crowns.webp",
+    imageBefore: "/images/caso2-antes.webp",
+    imageAfter: "/images/caso2-despues.webp",
     imageAlt: "Antes y después de coronas de porcelana en dientes frontales",
     tag: "Coronas Straumann®",
+    beforePosition: "center 55%", // Muestra la parte inferior de la cara (la boca)
+    afterPosition: "center 80%", // Muestra la parte superior/media (la boca)
   },
   {
     id: "caso-3",
@@ -26,32 +33,45 @@ const cases = [
     title: "Caso 3: De la simulación 3D a la realidad",
     description:
       "Muestra cómo el Diseño Digital de Sonrisa se traduce exactamente en el resultado final del paciente.",
-    image: "/images/case-digital-3d.webp",
-    imageAlt: "Comparación entre simulación digital 3D y resultado real del implante",
+    imageBefore: "/images/caso3-antes.webp",
+    imageAfter: "/images/caso3-despues.webp",
+    imageAlt:
+      "Comparación entre simulación digital 3D y resultado real del implante",
     tag: "Diseño Digital",
+    beforePosition: "center 50%",
+    afterPosition: "center 50%",
   },
 ];
 ---
 
-<section id="casos-reales" class="py-16 lg:py-24 bg-background relative overflow-hidden">
+<section
+  id="casos-reales"
+  class="py-16 lg:py-24 bg-background relative overflow-hidden"
+>
   {/* Glow decorativo */}
   <div
     class="absolute top-0 right-0 w-[700px] h-[500px] bg-primary/8 rounded-full blur-[140px] pointer-events-none -z-10"
-  ></div>
+  >
+  </div>
 
   <div class="container mx-auto px-4 md:px-6">
     {/* Header */}
     <div class="text-center max-w-3xl mx-auto mb-14">
-      <span class="text-primary font-bold tracking-widest uppercase text-xs mb-4 block">
+      <span
+        class="text-primary font-bold tracking-widest uppercase text-xs mb-4 block"
+      >
         Casos Reales
       </span>
-      <h2 class="text-3xl md:text-4xl lg:text-5xl text-slate-900 font-bold mb-5 leading-tight">
+      <h2
+        class="text-3xl md:text-4xl lg:text-5xl text-slate-900 font-bold mb-5 leading-tight"
+      >
         Resultados Reales: Transformaciones que{" "}
         <span class="text-primary">cambian vidas</span>
       </h2>
       <p class="text-lg text-slate-500 leading-relaxed">
         Mirá el poder de la odontología digital en casos de pacientes reales de
-        <strong class="text-slate-700">Implantes Salud</strong>.
+        <strong class="text-slate-700">Implantes Salud</strong>. Deslizá para
+        ver el cambio.
       </p>
     </div>
 
@@ -63,32 +83,81 @@ const cases = [
             id={c.id}
             class="group bg-white rounded-3xl border border-primary/10 overflow-hidden shadow-[0_8px_30px_rgba(126,179,180,0.12)] hover:shadow-[0_20px_60px_rgba(126,179,180,0.25)] hover:-translate-y-2 transition-all duration-500 flex flex-col"
           >
-            {/* Imagen 16:9 con overlay de labels Antes/Después */}
-            <div class="relative w-full aspect-video overflow-hidden">
+            {/* Image Slider */}
+            <div
+              class="relative w-full aspect-video overflow-hidden before-after-slider"
+              style="--position: 50%;"
+            >
+              {/* After image (bottom) */}
               <img
-                src={c.image}
-                alt={c.imageAlt}
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                src={c.imageAfter}
+                alt={c.imageAlt + " Después"}
+                class="absolute inset-0 w-full h-full object-cover scale-[1.5] origin-center"
+                style={`object-position: ${c.afterPosition};`}
                 loading="lazy"
               />
 
+              {/* Before image (top) con clip-path */}
+              <div
+                class="absolute inset-0 w-full h-full overflow-hidden"
+                style="clip-path: inset(0 calc(100% - var(--position)) 0 0);"
+              >
+                {/* NOTA: temporalmente usando un filtro sepia/grayscale en la imagen AFTER si falla al cargar la imagen ANTES (onerror fallback) para demostrar el efecto hasta que subas las fotos */}
+                <img
+                  src={c.imageBefore}
+                  alt={c.imageAlt + " Antes"}
+                  class="absolute inset-0 w-full h-full object-cover scale-[1.5] origin-center"
+                  style={`object-position: ${c.beforePosition};`}
+                  loading="lazy"
+                  onerror={`this.onerror=null; this.src='${c.imageAfter}'; this.style.filter='grayscale(100%) blur(1px)';`}
+                />
+              </div>
+
+              {/* Slider Controller (Range Input) */}
+              <input
+                type="range"
+                min="0"
+                max="100"
+                value="50"
+                aria-label="Deslizar para comparar antes y después"
+                class="slider absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-20 m-0"
+              />
+
+              {/* Slider Visual Line & Handle */}
+              <div
+                class="absolute top-0 bottom-0 w-1 bg-white cursor-ew-resize pointer-events-none z-10 flex items-center justify-center shadow-[0_0_10px_rgba(0,0,0,0.3)] transition-transform duration-75"
+                style="left: var(--position); transform: translateX(-50%);"
+              >
+                <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-[0_2px_10px_rgba(0,0,0,0.2)] text-primary">
+                  <svg
+                    class="w-4 h-4"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  >
+                    <path d="M15 18l6-6-6-6M9 18l-6-6 6-6" />
+                  </svg>
+                </div>
+              </div>
+
               {/* Labels flotantes Antes / Después */}
-              <div class="absolute inset-0 flex pointer-events-none">
+              <div class="absolute inset-0 flex pointer-events-none z-10">
                 <div class="flex-1 flex items-end pb-3 pl-3">
-                  <span class="bg-black/50 backdrop-blur-sm text-white text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full">
+                  <span class="bg-black/50 backdrop-blur-sm text-white text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full transition-opacity opacity-100 before-label">
                     Antes
                   </span>
                 </div>
                 <div class="flex-1 flex items-end justify-end pb-3 pr-3">
-                  <span class="bg-primary/80 backdrop-blur-sm text-white text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full">
+                  <span class="bg-primary/80 backdrop-blur-sm text-white text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full transition-opacity opacity-100 after-label">
                     Después
                   </span>
                 </div>
               </div>
 
               {/* Tag de tratamiento */}
-              <div class="absolute top-3 left-3">
-                <span class="bg-white/90 backdrop-blur-sm text-primary text-[10px] font-extrabold uppercase tracking-widest px-2.5 py-1 rounded-full border border-primary/20 shadow-sm">
+              <div class="absolute top-3 left-3 z-10">
+                <span class="bg-white/90 backdrop-blur-sm text-primary text-[10px] font-extrabold uppercase tracking-widest px-2.5 py-1 rounded-full border border-primary/20 shadow-sm pointer-events-auto">
                   {c.tag}
                 </span>
               </div>
@@ -132,26 +201,57 @@ const cases = [
 
     {/* Nota de pie */}
     <p class="text-center text-xs text-slate-400 mt-10 max-w-xl mx-auto">
-      * Las imágenes representan resultados clínicos típicos. Los resultados individuales pueden variar según las condiciones de cada paciente.
+      * Las imágenes representan resultados clínicos típicos. Los resultados
+      individuales pueden variar según las condiciones de cada paciente.
     </p>
   </div>
 </section>
 
 <script>
-  // CTA → scroll a contacto (mismo patrón que Features)
-  document.querySelectorAll<HTMLButtonElement>(".cta-contact").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const treatment = btn.dataset.treatment || "";
-      const treatmentSelect = document.getElementById("treatment") as HTMLSelectElement;
-      if (treatmentSelect && treatment) {
-        treatmentSelect.value = treatment;
-        treatmentSelect.classList.add("border-primary", "!bg-primary/5");
-        setTimeout(() => {
-          treatmentSelect.classList.remove("border-primary", "!bg-primary/5");
-        }, 2000);
+  // Inicializar los sliders de antes/despues
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".before-after-slider").forEach((slider) => {
+      const input = slider.querySelector(".slider") as HTMLInputElement;
+      const beforeLabel = slider.querySelector(".before-label") as HTMLElement;
+      const afterLabel = slider.querySelector(".after-label") as HTMLElement;
+
+      if (input) {
+        input.addEventListener("input", (e) => {
+          const val = (e.target as HTMLInputElement).value;
+          (slider as HTMLElement).style.setProperty("--position", `${val}%`);
+
+          // Opcional: ocultar labels si el slider está muy al extremo
+          if (beforeLabel)
+            beforeLabel.style.opacity = parseInt(val) < 20 ? "0" : "1";
+          if (afterLabel)
+            afterLabel.style.opacity = parseInt(val) > 80 ? "0" : "1";
+        });
       }
-      const contactSection = document.getElementById("contacto");
-      if (contactSection) contactSection.scrollIntoView({ behavior: "smooth" });
     });
+
+    // CTA → scroll a contacto
+    document
+      .querySelectorAll<HTMLButtonElement>(".cta-contact")
+      .forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const treatment = btn.dataset.treatment || "";
+          const treatmentSelect = document.getElementById(
+            "treatment",
+          ) as HTMLSelectElement;
+          if (treatmentSelect && treatment) {
+            treatmentSelect.value = treatment;
+            treatmentSelect.classList.add("border-primary", "!bg-primary/5");
+            setTimeout(() => {
+              treatmentSelect.classList.remove(
+                "border-primary",
+                "!bg-primary/5",
+              );
+            }, 2000);
+          }
+          const contactSection = document.getElementById("contacto");
+          if (contactSection)
+            contactSection.scrollIntoView({ behavior: "smooth" });
+        });
+      });
   });
 </script>
